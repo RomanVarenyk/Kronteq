@@ -8,6 +8,7 @@ import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
+import org.bukkit.inventory.ItemStack;
 
 import java.util.ArrayList;
 
@@ -27,18 +28,19 @@ Kronteq plugin;
             if(args.length > 0){
                 Player target = Bukkit.getPlayerExact(args[0]);
                 try {
-                    ArrayList<Double> retuns = new ArrayList<Double>(plugin.selectCD(player.getUniqueId().toString()));
+                    ArrayList<Integer> retuns = new ArrayList<Integer>(plugin.selectCD(player.getUniqueId().toString()));
                 } catch (Exception e) {
                     e.printStackTrace();
                     plugin.playerError(player, "SQL request for user data. ");
                 }
             }else{
                 try {
-                    ArrayList<Double> retuns = new ArrayList<Double>(plugin.selectCD(player.getUniqueId().toString()));
+                    ArrayList<Integer> retuns = new ArrayList<Integer>(plugin.selectCD(player.getUniqueId().toString()));
                 } catch (Exception e) {
                     e.printStackTrace();
                     plugin.playerError(player, "SQL request for user data. ");
                 }
+                ItemStack KD
             }
         }
         return false;

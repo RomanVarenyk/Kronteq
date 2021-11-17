@@ -51,7 +51,7 @@ public final class Kronteq extends JavaPlugin {
     public void createTableUserStats()throws Exception{
         try{
             Connection con = getConnection();
-            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS userStats(UUID varchar(255), KD double, wonGames int,lostGames int,kills int,deaths int, PRIMARY KEY (UUID))");
+            PreparedStatement create = con.prepareStatement("CREATE TABLE IF NOT EXISTS userStats(UUID varchar(255),wonGames int,lostGames int,kills int,deaths int, PRIMARY KEY (UUID))");
             create.executeUpdate();
             con.close();
         }catch(Exception e){}
@@ -69,16 +69,15 @@ public final class Kronteq extends JavaPlugin {
             consoleError("player join first time addition to database");
         }
     }
-    public ArrayList<Double> selectCD(String UUID) throws Exception {
-        ArrayList<Double> retuns = new ArrayList<Double>();
+    public ArrayList<Integer> selectCD(String UUID) throws Exception {
+        ArrayList<Integer> retuns = new ArrayList<Integer>();
         Connection con = getConnection();
-        PreparedStatement statement = con.prepareStatement("SELECT KD,wonGames,lostGames,kills,deaths FROM userStats WHERE UUID="+UUID+"");
+        PreparedStatement statement = con.prepareStatement("SELECT wonGames,lostGames,kills,deaths FROM userStats WHERE UUID="+UUID+"");
         ResultSet result = statement.executeQuery();
-        retuns.add(result.getDouble("KD"));
-        retuns.add(result.getDouble("wonGames"));
-        retuns.add(result.getDouble("lostGames"));
-        retuns.add(result.getDouble("kills"));
-        retuns.add(result.getDouble("deaths"));
+        retuns.add(result.getInt("wonGames"));
+        retuns.add(result.getInt("lostGames"));
+        retuns.add(result.getInt("kills"));
+        retuns.add(result.getInt("deaths"));
         con.close();
         return retuns;
     }
