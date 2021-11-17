@@ -1,0 +1,5 @@
+name: Kronteq
+version: '${project.version}'
+main: com.github.ukraine1449.kronteq.Kronteq
+authors: [ Ukraine1449 ]
+website: plugins.world
