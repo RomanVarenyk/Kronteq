@@ -3,3 +3,6 @@ version: '${project.version}'
 main: com.github.ukraine1449.kronteq.Kronteq
 authors: [ Ukraine1449 ]
 website: plugins.world
+commands:
+  stats:
+    description: a command to get stats for a player
