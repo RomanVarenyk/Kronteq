@@ -26,8 +26,19 @@ Kronteq plugin;
             Inventory gui = Bukkit.createInventory(player, 9, ChatColor.GREEN + "Player stats");
             if(args.length > 0){
                 Player target = Bukkit.getPlayerExact(args[0]);
+                try {
+                    ArrayList<Double> retuns = new ArrayList<Double>(plugin.selectCD(player.getUniqueId().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    plugin.playerError(player, "SQL request for user data. ");
+                }
             }else{
-                ArrayList<Double> retuns = new ArrayList<Double>();
+                try {
+                    ArrayList<Double> retuns = new ArrayList<Double>(plugin.selectCD(player.getUniqueId().toString()));
+                } catch (Exception e) {
+                    e.printStackTrace();
+                    plugin.playerError(player, "SQL request for user data. ");
+                }
             }
         }
         return false;

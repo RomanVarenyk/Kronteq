@@ -2,6 +2,8 @@ package com.github.ukraine1449.kronteq;
 
 import com.github.ukraine1449.kronteq.Commands.checkPlayerStats;
 import com.github.ukraine1449.kronteq.Events.playerJoinEvent;
+import org.bukkit.ChatColor;
+import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
 import java.sql.Connection;
@@ -79,5 +81,8 @@ public final class Kronteq extends JavaPlugin {
         retuns.add(result.getDouble("deaths"));
         con.close();
         return retuns;
+    }
+    public void playerError(Player player, String Location){
+        player.sendMessage(ChatColor.RED+"An error has occured with "+ Location+". Please look at the error code in the console, and attempt to troubleshoot, if not possible please contact the author. Discord: Ukraine#1449 Email: ukraine1449@gmail.com");
     }
 }
