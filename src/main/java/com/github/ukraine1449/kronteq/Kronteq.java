@@ -62,17 +62,18 @@ public final class Kronteq extends JavaPlugin {
     public void playerJoinQuery(String UUID){
         try{
             Connection con = getConnection();
-            PreparedStatement posted = con.prepareStatement("INSERT INTO userStats(UUID) VALUES ("+UUID+")ON DUPLICATE KEY UPDATE UUID="+UUID+"");
+            PreparedStatement posted = con.prepareStatement("INSERT INTO userStats(UUID, wonGames, lostGames, kills, deaths) VALUES ('"+UUID+"')ON DUPLICATE KEY UPDATE UUID='"+UUID+"'");
             posted.executeUpdate();
             con.close();
         }catch (Exception e){
-            consoleError("player join first time addition to database");
+            e.printStackTrace();
+            //consoleError("player join first time addition to database");
         }
     }
     public ArrayList<Integer> selectCD(String UUID) throws Exception {
         ArrayList<Integer> retuns = new ArrayList<Integer>();
         Connection con = getConnection();
-        PreparedStatement statement = con.prepareStatement("SELECT wonGames,lostGames,kills,deaths FROM userStats WHERE UUID="+UUID+"");
+        PreparedStatement statement = con.prepareStatement("SELECT wonGames,lostGames,kills,deaths FROM userStats WHERE UUID='"+UUID+"'");
         ResultSet result = statement.executeQuery();
         retuns.add(result.getInt("wonGames"));
         retuns.add(result.getInt("lostGames"));

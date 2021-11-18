@@ -18,9 +18,7 @@ Kronteq plugin;
     public void playerJoinEvent(PlayerJoinEvent event) throws Exception {
 
         Player player = event.getPlayer();
-        if(!player.hasPlayedBefore()){
-            plugin.playerJoinQuery(player.getUniqueId().toString());
-        }
+        plugin.playerJoinQuery(player.getUniqueId().toString());
 
     }
 
