@@ -86,6 +86,18 @@ public final class Kronteq extends JavaPlugin {
         con.close();
         return retuns;
     }
+    public void postOnKill(String UUIDK, String UUIDD) throws Exception {
+     Connection con = getConnection();
+     PreparedStatement updateWonGames = con.prepareStatement("UPDATE userStats SET wonGames=1  WHERE UUID="+UUIDK+""); //replace wongames, lostgames, kills and deaths with inputs.
+         PreparedStatement updateLostGames = con.prepareStatement("UPDATE userStats SET lostGames=1  WHERE UUID="+UUIDD+"");
+         updateLostGames.executeUpdate();
+         updateWonGames.executeUpdate();
+        PreparedStatement updateDeaths = con.prepareStatement("UPDATE userStats SET kills=1  WHERE UUID="+UUIDK+""); //replace wongames, lostgames, kills and deaths with inputs.
+        PreparedStatement updateKills = con.prepareStatement("UPDATE userStats SET deaths=1  WHERE UUID="+UUIDD+"");
+        updateLostGames.executeUpdate();
+        updateWonGames.executeUpdate();
+        con.close();
+    }
     public void playerError(Player player, String Location){
         player.sendMessage(ChatColor.RED+"An error has occured with "+ Location+". Please look at the error code in the console, and attempt to troubleshoot, if not possible please contact the author. Discord: Ukraine#1449 Email: ukraine1449@gmail.com");
     }
