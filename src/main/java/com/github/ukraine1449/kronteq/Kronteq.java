@@ -62,7 +62,7 @@ public final class Kronteq extends JavaPlugin {
     public void playerJoinQuery(String UUID){
         try{
             Connection con = getConnection();
-            PreparedStatement posted = con.prepareStatement("INSERT INTO userStats(UUID, wonGames, lostGames, kills, deaths) VALUES ('"+UUID+"')ON DUPLICATE KEY UPDATE UUID='"+UUID+"'");
+            PreparedStatement posted = con.prepareStatement("INSERT INTO userStats(UUID, wonGames, lostGames, kills, deaths) VALUES ('"+UUID+"', 0, 0, 0, 0)ON DUPLICATE KEY UPDATE UUID='"+UUID+"'");
             posted.executeUpdate();
             con.close();
         }catch (Exception e){
@@ -71,14 +71,18 @@ public final class Kronteq extends JavaPlugin {
         }
     }
     public ArrayList<Integer> selectCD(String UUID) throws Exception {
+        System.out.println("ch1");
         ArrayList<Integer> retuns = new ArrayList<Integer>();
         Connection con = getConnection();
+        System.out.println("ch2");
         PreparedStatement statement = con.prepareStatement("SELECT wonGames,lostGames,kills,deaths FROM userStats WHERE UUID='"+UUID+"'");
         ResultSet result = statement.executeQuery();
+        System.out.println("ch3");
         retuns.add(result.getInt("wonGames"));
         retuns.add(result.getInt("lostGames"));
         retuns.add(result.getInt("kills"));
         retuns.add(result.getInt("deaths"));
+        System.out.println("ch4");
         con.close();
         return retuns;
     }

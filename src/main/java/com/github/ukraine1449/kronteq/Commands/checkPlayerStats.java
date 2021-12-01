@@ -44,44 +44,50 @@ Kronteq plugin;
                     e.printStackTrace();
                     plugin.playerError(player, "SQL request for user data. ");
                 }
-                double KDR = returns.get(2)/returns.get(3);
-                ItemStack playerName = new ItemStack(Material.NAME_TAG);
-                ItemMeta PNM = playerName.getItemMeta();
-                PNM.setDisplayName(ChatColor.LIGHT_PURPLE + "Player name: " + player.getDisplayName());
-                playerName.setItemMeta(PNM);
-                gui.addItem(playerName);
+                if(!returns.isEmpty()){
+                    double KDR;
+                    if(returns.get(2) != 0 && returns.get(3) != 0){
+                        KDR = returns.get(2)/returns.get(3);
+                    }else {
+                        KDR = 0;
+                    }
+                    ItemStack playerName = new ItemStack(Material.NAME_TAG);
+                    ItemMeta PNM = playerName.getItemMeta();
+                    PNM.setDisplayName(ChatColor.LIGHT_PURPLE + "Player name: " + player.getDisplayName());
+                    playerName.setItemMeta(PNM);
+                    gui.addItem(playerName);
 
-                ItemStack gamesWon = new ItemStack(Material.GOLD_INGOT);
-                ItemMeta GWM = gamesWon.getItemMeta();
-                GWM.setDisplayName(ChatColor.GOLD + "Games won: " + returns.get(0));
-                gamesWon.setItemMeta(GWM);
-                gui.addItem(gamesWon);
+                    ItemStack gamesWon = new ItemStack(Material.GOLD_INGOT);
+                    ItemMeta GWM = gamesWon.getItemMeta();
+                    GWM.setDisplayName(ChatColor.GOLD + "Games won: " + returns.get(0));
+                    gamesWon.setItemMeta(GWM);
+                    gui.addItem(gamesWon);
 
-                ItemStack lostGames = new ItemStack(Material.BLAZE_POWDER);
-                ItemMeta LGM = lostGames.getItemMeta();
-                LGM.setDisplayName(ChatColor.GOLD + "Games lost: " + returns.get(1));
-                lostGames.setItemMeta(LGM);
-                gui.addItem(lostGames);
+                    ItemStack lostGames = new ItemStack(Material.BLAZE_POWDER);
+                    ItemMeta LGM = lostGames.getItemMeta();
+                    LGM.setDisplayName(ChatColor.GOLD + "Games lost: " + returns.get(1));
+                    lostGames.setItemMeta(LGM);
+                    gui.addItem(lostGames);
 
-                ItemStack kills = new ItemStack(Material.DIAMOND_SWORD);
-                ItemMeta KM = kills.getItemMeta();
-                KM.setDisplayName(ChatColor.GOLD + "Kills: " + returns.get(2));
-                kills.setItemMeta(KM);
-                gui.addItem(kills);
+                    ItemStack kills = new ItemStack(Material.DIAMOND_SWORD);
+                    ItemMeta KM = kills.getItemMeta();
+                    KM.setDisplayName(ChatColor.GOLD + "Kills: " + returns.get(2));
+                    kills.setItemMeta(KM);
+                    gui.addItem(kills);
 
-                ItemStack deaths = new ItemStack(Material.GOLD_INGOT);
-                ItemMeta DM = deaths.getItemMeta();
-                DM.setDisplayName(ChatColor.GOLD + "Deaths: " + returns.get(3));
-                deaths.setItemMeta(DM);
-                gui.addItem(deaths);
-                ItemStack KD = new ItemStack(Material.DIAMOND_AXE);
-                ItemMeta KDM = KD.getItemMeta();
-                GWM.setDisplayName(ChatColor.GOLD + "KD ratio: " + KDR);
-                KD.setItemMeta(KDM);
-                gui.addItem(KD);
-                player.openInventory(gui);
-                returns.clear();
-            }
+                    ItemStack deaths = new ItemStack(Material.GOLD_INGOT);
+                    ItemMeta DM = deaths.getItemMeta();
+                    DM.setDisplayName(ChatColor.GOLD + "Deaths: " + returns.get(3));
+                    deaths.setItemMeta(DM);
+                    gui.addItem(deaths);
+                    ItemStack KD = new ItemStack(Material.DIAMOND_AXE);
+                    ItemMeta KDM = KD.getItemMeta();
+                    GWM.setDisplayName(ChatColor.GOLD + "KD ratio: " + KDR);
+                    KD.setItemMeta(KDM);
+                    gui.addItem(KD);
+                    player.openInventory(gui);
+                    returns.clear();
+            }}
         }
         return false;
     }
