@@ -2,6 +2,7 @@ package com.github.ukraine1449.kronteq;
 
 import com.github.ukraine1449.kronteq.Commands.checkPlayerStats;
 import com.github.ukraine1449.kronteq.Events.playerJoinEvent;
+import com.github.ukraine1449.kronteq.Events.playerKillEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -25,6 +26,7 @@ public final class Kronteq extends JavaPlugin {
             consoleError("SQL user stats table creation");
         }
         getServer().getPluginManager().registerEvents(new playerJoinEvent(this), this);
+        getServer().getPluginManager().registerEvents(new playerKillEvent(this), this);
         getCommand("stats").setExecutor(new checkPlayerStats(this));
     }
 
