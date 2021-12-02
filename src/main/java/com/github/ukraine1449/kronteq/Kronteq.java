@@ -39,7 +39,7 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
         getCommand("getQue").setExecutor(new getQue(this));
 
     }
-
+//TODO: make the playerKillEvent respond to burning in lava, remove the sumo2 clear on death and instead do it in the method, teleport both players to the HUB.
     @Override
     public void onDisable() {
         // Plugin shutdown logic
@@ -116,7 +116,7 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
         player.sendMessage(ChatColor.RED+"An error has occured with "+ Location+". Please look at the error code in the console, and attempt to troubleshoot, if not possible please contact the author. Discord: Ukraine#1449 Email: ukraine1449@gmail.com");
     }
     public void playerTeleportToReady(){
-        if(que.size() >= 1){
+        if(que.size() >= 2){
             if(!freeArenas.isEmpty()){
                 Location p1l = null;
                 Location p2l = null;
@@ -140,6 +140,8 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
                 }
                 player1.teleport(p1l);
                 player2.teleport(p2l);
+                player1.sendMessage(ChatColor.RED + "Your match has started with " + player2.getDisplayName());
+                player2.sendMessage(ChatColor.RED + "Your match has started with " + player1.getDisplayName());
             }
         }
     }

@@ -22,6 +22,9 @@ Kronteq plugin;
             if(!plugin.que.contains(player)){
                 plugin.que.add(player);
                 player.sendMessage(ChatColor.GREEN + "You have been added to the que. do /getQue to see the que");
+                if(!plugin.freeArenas.isEmpty() && plugin.que.size() <= 1){
+                    plugin.playerTeleportToReady();
+                }
             }else{
                 player.sendMessage(ChatColor.RED +"You are already in the que. do /getQue to see the que.");
             }

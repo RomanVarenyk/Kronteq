@@ -21,7 +21,7 @@ Kronteq plugin;
             Player player = (Player) sender;
             player.sendMessage(ChatColor.YELLOW + "The que is as follows:");
             for(int i = 0; i < plugin.que.size(); i++){
-                player.sendMessage(i + " " + plugin.que.get(i));
+                player.sendMessage(i + " " + plugin.que.get(i).getDisplayName());
             }
         }
 
