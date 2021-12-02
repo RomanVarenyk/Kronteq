@@ -11,6 +11,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import sun.util.resources.cldr.ext.LocaleNames_xh;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -21,6 +23,7 @@ public final class Kronteq extends JavaPlugin {
 public ArrayList<Player> que = new ArrayList<Player>();
 public ArrayList<Player> sumo2 = new ArrayList<Player>();
 public ArrayList<String> freeArenas = new ArrayList<String>();
+Location defaultStoredLOC = getServer().getWorld("PLACEHOLDERREPLACEASAP").getSpawnLocation();
     @Override
     public void onEnable() {
         getConfig().options().copyDefaults();
@@ -117,7 +120,7 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
     }
     public void playerTeleportToReady(){
         if(que.size() >= 2){
-            if(!freeArenas.isEmpty()){
+            if(!freeArenas.isEmpty()){//TODO replace null with defaultstoredlocation if null generates error.
                 Location p1l = null;
                 Location p2l = null;
                 String arenaName = freeArenas.get(0);
@@ -144,5 +147,9 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
                 player2.sendMessage(ChatColor.RED + "Your match has started with " + player1.getDisplayName());
             }
         }
+    }
+    public void teleportBackToHub(Player p1, Player p2){
+        p1.teleport(defaultStoredLOC);
+        p2.teleport(defaultStoredLOC);
     }
 }
