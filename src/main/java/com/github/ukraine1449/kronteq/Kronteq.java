@@ -39,7 +39,7 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
         getCommand("getQue").setExecutor(new getQue(this));
 
     }
-//TODO: make the playerKillEvent respond to burning in lava, remove the sumo2 clear on death and instead do it in the method, teleport both players to the HUB.
+//TODO: remove the sumo2 clear on death and instead do it in the method, teleport both players to the HUB.
     @Override
     public void onDisable() {
         // Plugin shutdown logic
