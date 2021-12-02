@@ -1,6 +1,7 @@
 package com.github.ukraine1449.kronteq;
 
 import com.github.ukraine1449.kronteq.Commands.checkPlayerStats;
+import com.github.ukraine1449.kronteq.Events.MenuHandler;
 import com.github.ukraine1449.kronteq.Events.playerJoinEvent;
 import com.github.ukraine1449.kronteq.Events.playerKillEvent;
 import org.bukkit.ChatColor;
@@ -15,9 +16,9 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 
 public final class Kronteq extends JavaPlugin {
-ArrayList<Player> que = new ArrayList<Player>();
-ArrayList<Player> sumo2 = new ArrayList<Player>();
-ArrayList<String> freeArenas = new ArrayList<String>();
+public ArrayList<Player> que = new ArrayList<Player>();
+public ArrayList<Player> sumo2 = new ArrayList<Player>();
+public ArrayList<String> freeArenas = new ArrayList<String>();
     @Override
     public void onEnable() {
         getConfig().options().copyDefaults();
@@ -28,6 +29,7 @@ ArrayList<String> freeArenas = new ArrayList<String>();
             e.printStackTrace();
             consoleError("SQL user stats table creation");
         }
+        getServer().getPluginManager().registerEvents(new MenuHandler(), this);
         getServer().getPluginManager().registerEvents(new playerJoinEvent(this), this);
         getServer().getPluginManager().registerEvents(new playerKillEvent(this), this);
         getCommand("stats").setExecutor(new checkPlayerStats(this));

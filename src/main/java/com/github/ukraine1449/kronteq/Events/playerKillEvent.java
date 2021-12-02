@@ -18,8 +18,11 @@ Kronteq plugin;
         if(event.getEntity().getKiller() != null){
             if(event.getEntity().getKiller() instanceof Player){
                 if(event.getEntity().getWorld().getName() == "Sumo2"){
-                    plugin.postOnKill(event.getEntity().getUniqueId().toString(), event.getEntity().getKiller().getUniqueId().toString());
-                    //working on this in main class function playerTeleport to ready
+                    plugin.sumo2.remove(event.getEntity());
+                    plugin.postOnKill(plugin.sumo2.get(0).toString(), event.getEntity().toString());
+                    plugin.sumo2.clear();
+                    plugin.freeArenas.add("Sumo2");
+                    plugin.playerTeleportToReady();
                 }
             }
         }

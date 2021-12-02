@@ -82,7 +82,7 @@ Kronteq plugin;
                     gui.addItem(deaths);
                     ItemStack KD = new ItemStack(Material.DIAMOND_AXE);
                     ItemMeta KDM = KD.getItemMeta();
-                    GWM.setDisplayName(ChatColor.GOLD + "KD ratio: " + KDR);
+                    KDM.setDisplayName(ChatColor.GOLD + "KD ratio: " + KDR);
                     KD.setItemMeta(KDM);
                     gui.addItem(KD);
                     player.openInventory(gui);
