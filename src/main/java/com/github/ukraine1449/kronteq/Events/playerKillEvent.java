@@ -21,7 +21,7 @@ Kronteq plugin;
                     if(plugin.sumo2.contains(event.getEntity())){
                         plugin.sumo2.remove(event.getEntity());
                         plugin.postOnKill(plugin.sumo2.get(0).toString(), event.getEntity().toString());
-
+                        plugin.teleportBackToHub(event.getEntity(), plugin.sumo2.get(0));
                         plugin.sumo2.clear();
                         plugin.freeArenas.add("Sumo2");
                         plugin.playerTeleportToReady();
