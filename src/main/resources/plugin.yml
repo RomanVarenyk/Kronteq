@@ -6,3 +6,7 @@ website: plugins.world
 commands:
   stats:
     description: a command to get stats for a player
+  joinque:
+    description: a command to join the sumo que
+  getQue:
+    description: a command to get to see the que.

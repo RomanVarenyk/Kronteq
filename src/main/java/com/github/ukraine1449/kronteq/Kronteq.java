@@ -1,6 +1,8 @@
 package com.github.ukraine1449.kronteq;
 
 import com.github.ukraine1449.kronteq.Commands.checkPlayerStats;
+import com.github.ukraine1449.kronteq.Commands.getQue;
+import com.github.ukraine1449.kronteq.Commands.joinQue;
 import com.github.ukraine1449.kronteq.Events.MenuHandler;
 import com.github.ukraine1449.kronteq.Events.playerJoinEvent;
 import com.github.ukraine1449.kronteq.Events.playerKillEvent;
@@ -33,6 +35,9 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
         getServer().getPluginManager().registerEvents(new playerJoinEvent(this), this);
         getServer().getPluginManager().registerEvents(new playerKillEvent(this), this);
         getCommand("stats").setExecutor(new checkPlayerStats(this));
+        getCommand("joinque").setExecutor(new joinQue(this));
+        getCommand("getQue").setExecutor(new getQue(this));
+
     }
 
     @Override
