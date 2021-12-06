@@ -23,9 +23,17 @@ public final class Kronteq extends JavaPlugin {
 public ArrayList<Player> que = new ArrayList<Player>();
 public ArrayList<Player> sumo2 = new ArrayList<Player>();
 public ArrayList<String> freeArenas = new ArrayList<String>();
-Location defaultStoredLOC = getServer().getWorld("PLACEHOLDERREPLACEASAP").getSpawnLocation();
+World testWorld;
+//8, 100, 162
+
+public Location defaultStoredLOC= null;
     @Override
     public void onEnable() {
+        testWorld = getServer().getWorld("Practice");
+        defaultStoredLOC.setWorld(testWorld);
+        defaultStoredLOC.setX(8);
+        defaultStoredLOC.setY(100);
+        defaultStoredLOC.setZ(162);
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         try {
