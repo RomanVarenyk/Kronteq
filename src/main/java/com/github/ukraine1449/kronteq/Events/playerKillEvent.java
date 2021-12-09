@@ -1,6 +1,7 @@
 package com.github.ukraine1449.kronteq.Events;
 
 import com.github.ukraine1449.kronteq.Kronteq;
+import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
@@ -22,6 +23,7 @@ Kronteq plugin;
                         plugin.sumo2.remove(event.getEntity());
                         plugin.postOnKill(plugin.sumo2.get(0).toString(), event.getEntity().toString());
                         plugin.teleportBackToHub(event.getEntity(), plugin.sumo2.get(0));
+                        Bukkit.broadcastMessage(event.getEntity() + " SEP " + plugin.sumo2.get(0));
                         plugin.sumo2.clear();
                         plugin.freeArenas.add("Sumo2");
                         plugin.playerTeleportToReady();

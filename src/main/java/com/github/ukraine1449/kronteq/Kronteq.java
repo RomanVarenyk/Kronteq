@@ -3,9 +3,11 @@ package com.github.ukraine1449.kronteq;
 import com.github.ukraine1449.kronteq.Commands.checkPlayerStats;
 import com.github.ukraine1449.kronteq.Commands.getQue;
 import com.github.ukraine1449.kronteq.Commands.joinQue;
+import com.github.ukraine1449.kronteq.Commands.leaveQueue;
 import com.github.ukraine1449.kronteq.Events.MenuHandler;
 import com.github.ukraine1449.kronteq.Events.playerJoinEvent;
 import com.github.ukraine1449.kronteq.Events.playerKillEvent;
+import com.github.ukraine1449.kronteq.Events.playerLeaveEvent;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -23,17 +25,12 @@ public final class Kronteq extends JavaPlugin {
 public ArrayList<Player> que = new ArrayList<Player>();
 public ArrayList<Player> sumo2 = new ArrayList<Player>();
 public ArrayList<String> freeArenas = new ArrayList<String>();
-World testWorld;
+
 //8, 100, 162
 
-public Location defaultStoredLOC= null;
     @Override
     public void onEnable() {
-        testWorld = getServer().getWorld("Practice");
-        defaultStoredLOC.setWorld(testWorld);
-        defaultStoredLOC.setX(8);
-        defaultStoredLOC.setY(100);
-        defaultStoredLOC.setZ(162);
+        freeArenas.add("Sumo2");
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         try {
@@ -44,10 +41,12 @@ public Location defaultStoredLOC= null;
         }
         getServer().getPluginManager().registerEvents(new MenuHandler(), this);
         getServer().getPluginManager().registerEvents(new playerJoinEvent(this), this);
+        getServer().getPluginManager().registerEvents(new playerLeaveEvent(this), this);
         getServer().getPluginManager().registerEvents(new playerKillEvent(this), this);
         getCommand("stats").setExecutor(new checkPlayerStats(this));
         getCommand("joinque").setExecutor(new joinQue(this));
         getCommand("getQue").setExecutor(new getQue(this));
+        getCommand("leavequeue").setExecutor(new leaveQueue(this));
 
     }
 //TODO: remove the sumo2 clear on death and instead do it in the method, teleport both players to the HUB.
@@ -129,8 +128,9 @@ public Location defaultStoredLOC= null;
     public void playerTeleportToReady(){
         if(que.size() >= 2){
             if(!freeArenas.isEmpty()){//TODO replace null with defaultstoredlocation if null generates error.
-                Location p1l = null;
-                Location p2l = null;
+                Location baseloc = que.get(0).getLocation();
+                Location p1l = baseloc;
+                Location p2l = baseloc;
                 String arenaName = freeArenas.get(0);
                 Player player1 = que.get(0);
                 Player player2 = que.get(1);
@@ -157,7 +157,8 @@ public Location defaultStoredLOC= null;
         }
     }
     public void teleportBackToHub(Player p1, Player p2){
-        p1.teleport(defaultStoredLOC);
-        p2.teleport(defaultStoredLOC);
+        Location hub = getServer().getWorld("Practice").getSpawnLocation();
+        p1.teleport(hub);
+        p2.teleport(hub);
     }
 }

@@ -10,3 +10,5 @@ commands:
     description: a command to join the sumo que
   getQue:
     description: a command to get to see the que.
+  leavequeue:
+    description: a command to leave the sumo queue
