@@ -13,7 +13,6 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-import sun.util.resources.cldr.ext.LocaleNames_xh;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -27,7 +26,6 @@ public ArrayList<Player> sumo2 = new ArrayList<Player>();
 public ArrayList<String> freeArenas = new ArrayList<String>();
 
 //8, 100, 162
-
     @Override
     public void onEnable() {
         freeArenas.add("Sumo2");
@@ -47,13 +45,8 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
         getCommand("joinque").setExecutor(new joinQue(this));
         getCommand("getQue").setExecutor(new getQue(this));
         getCommand("leavequeue").setExecutor(new leaveQueue(this));
-
     }
 //TODO: remove the sumo2 clear on death and instead do it in the method, teleport both players to the HUB.
-    @Override
-    public void onDisable() {
-        // Plugin shutdown logic
-    }
     public Connection getConnection() throws Exception{
         String ip = getConfig().getString("ip");
         String password = getConfig().getString("password");
@@ -140,14 +133,14 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
                     sumo2.add(player2);
                     que.remove(1);
                     que.remove(0);
-                    p1l.setWorld(world);
                     p1l.setX(2);
                     p1l.setY(54);
                     p1l.setZ(3);
-                    p2l.setWorld(world);
+                    p1l.setWorld(world);
                     p2l.setX(2);
                     p2l.setY(54);
                     p2l.setZ(-6);
+                    p2l.setWorld(world);
                 }
                 player1.teleport(p1l);
                 player2.teleport(p2l);

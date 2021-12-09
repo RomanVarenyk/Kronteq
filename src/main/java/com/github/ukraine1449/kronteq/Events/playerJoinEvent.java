@@ -4,7 +4,6 @@ import com.github.ukraine1449.kronteq.Kronteq;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
-import org.bukkit.event.block.BlockBreakEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 
 public class playerJoinEvent implements Listener {
