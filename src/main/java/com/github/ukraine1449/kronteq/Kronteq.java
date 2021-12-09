@@ -112,12 +112,12 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
     }
     public void postOnKill(String UUIDK, String UUIDD) throws Exception {
      Connection con = getConnection();
-     PreparedStatement updateWonGames = con.prepareStatement("UPDATE userStats SET wonGames+=1  WHERE UUID="+UUIDK+"");
-         PreparedStatement updateLostGames = con.prepareStatement("UPDATE userStats SET lostGames+=1  WHERE UUID="+UUIDD+"");
+     PreparedStatement updateWonGames = con.prepareStatement("UPDATE userStats SET wonGames=+1  WHERE UUID='"+UUIDK+"'");
+         PreparedStatement updateLostGames = con.prepareStatement("UPDATE userStats SET lostGames=+1  WHERE UUID='"+UUIDD+"'");
          updateLostGames.executeUpdate();
          updateWonGames.executeUpdate();
-        PreparedStatement updateDeaths = con.prepareStatement("UPDATE userStats SET kills+=1  WHERE UUID="+UUIDK+"");
-        PreparedStatement updateKills = con.prepareStatement("UPDATE userStats SET deaths+=1 WHERE UUID="+UUIDD+"");
+        PreparedStatement updateDeaths = con.prepareStatement("UPDATE userStats SET kills=+1  WHERE UUID='"+UUIDK+"'");
+        PreparedStatement updateKills = con.prepareStatement("UPDATE userStats SET deaths=+1 WHERE UUID='"+UUIDD+"'");
         updateKills.executeUpdate();
         updateDeaths.executeUpdate();
         con.close();
