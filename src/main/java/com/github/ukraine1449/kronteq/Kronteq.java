@@ -27,6 +27,7 @@ public ArrayList<Player> sumo3 = new ArrayList<Player>();
 public ArrayList<String> freeArenas = new ArrayList<String>();
 public boolean isDuelFree = true;
 public HashMap<Player, Player> duelList = new HashMap<Player, Player>();
+public ArrayList<Player> cDuel = new ArrayList<Player>();
 //8, 100, 162
     @Override
     public void onEnable() {
@@ -190,9 +191,26 @@ public HashMap<Player, Player> duelList = new HashMap<Player, Player>();
     public void playerDuelStart(Player p1, Player p2, String args){
         if(isDuelFree){
             if(args.equals("a")){
-
+                if(duelList.containsKey(p2)){
+                if (duelList.get(p2).getPlayer().getUniqueId() == p1.getUniqueId()){
+                    isDuelFree = false;
+                    Location defloc = p1.getLocation();
+                    defloc.setWorld(getServer().getWorld("duels"));
+                    defloc.setX(2);
+                    defloc.setY(54);
+                    defloc.setZ(-1);
+                    cDuel.add(p1);
+                    cDuel.add(p2);
+                    p1.teleport(defloc);
+                    p2.teleport(defloc);
+                    duelList.remove(p2);
+                }}
             }else if(args.equals("d")){
-
+                if(duelList.containsKey(p2)){
+                    if (duelList.get(p2).getPlayer().getUniqueId() == p1.getUniqueId()){
+                        p2.sendMessage(ChatColor.RED + "Your duel request has been denied.");
+                        duelList.remove(p2);
+                    }}
             }else{
                 duelList.putIfAbsent(p1, p2);
                 p2.sendMessage(p1.getDisplayName() + " " + ChatColor.BLUE + "has invited you to duel. to accept do /duel " + p1.getDisplayName() + " a");

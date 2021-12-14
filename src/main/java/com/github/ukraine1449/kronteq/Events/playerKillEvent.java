@@ -54,6 +54,12 @@ Kronteq plugin;
                     plugin.playerTeleportToReady();
                 }
                 break;
+            case "duels":
+                plugin.cDuel.remove(event.getEntity().getPlayer());
+                plugin.isDuelFree = true;
+                plugin.postOnKill(plugin.cDuel.get(0).getUniqueId().toString(), event.getEntity().getPlayer().getUniqueId().toString());
+                plugin.cDuel.clear();
+
         }
             }
         }
