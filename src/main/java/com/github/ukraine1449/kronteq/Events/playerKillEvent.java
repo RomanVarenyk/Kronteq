@@ -3,10 +3,13 @@ package com.github.ukraine1449.kronteq.Events;
 import com.github.ukraine1449.kronteq.Kronteq;
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
+import org.bukkit.Location;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.Listener;
 import org.bukkit.event.entity.PlayerDeathEvent;
+
+import static org.bukkit.Bukkit.getServer;
 
 public class playerKillEvent implements Listener {
 Kronteq plugin;
@@ -59,7 +62,9 @@ Kronteq plugin;
                 plugin.isDuelFree = true;
                 plugin.postOnKill(plugin.cDuel.get(0).getUniqueId().toString(), event.getEntity().getPlayer().getUniqueId().toString());
                 plugin.cDuel.clear();
-
+                Location hub = getServer().getWorld("Practice").getSpawnLocation();
+                event.getEntity().teleport(hub);
+                event.getEntity().getPlayer().teleport(hub);
         }
             }
         }
