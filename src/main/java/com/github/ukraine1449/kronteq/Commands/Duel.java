@@ -19,11 +19,15 @@ Kronteq plugin;
 
         if(sender instanceof Player){
             Player player = (Player) sender;
-            try{
-                Player target = Bukkit.getPlayerExact(args[0]);
-
-            }catch (Exception e){
-                plugin.playerError(player, "Player name");
+            if(!plugin.isInCurrentMatch.contains(player)){
+                try{
+                    Player target = Bukkit.getPlayerExact(args[0]);
+                    if(!plugin.isInCurrentMatch.contains(target)){
+                        plugin.playerDuelStart(player, target, args[1]);
+                    }
+                }catch (Exception e){
+                    plugin.playerError(player, "Player name");
+                }
             }
         }
 

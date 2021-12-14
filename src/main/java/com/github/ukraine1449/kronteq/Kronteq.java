@@ -28,6 +28,7 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
 public boolean isDuelFree = true;
 public HashMap<Player, Player> duelList = new HashMap<Player, Player>();
 public ArrayList<Player> cDuel = new ArrayList<Player>();
+public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
 //8, 100, 162
     @Override
     public void onEnable() {
@@ -133,6 +134,8 @@ public ArrayList<Player> cDuel = new ArrayList<Player>();
                 String arenaName = freeArenas.get(0);
                 Player player1 = que.get(0);
                 Player player2 = que.get(1);
+                isInCurrentMatch.add(player1);
+                isInCurrentMatch.add(player2);
                 if(arenaName.equals("Sumo2")){
                     World world = getServer().getWorld("Sumo2");
                     sumo2.add(player1);
@@ -204,6 +207,8 @@ public ArrayList<Player> cDuel = new ArrayList<Player>();
                     p1.teleport(defloc);
                     p2.teleport(defloc);
                     duelList.remove(p2);
+                    isInCurrentMatch.add(p1);
+                    isInCurrentMatch.add(p2);
                 }}
             }else if(args.equals("d")){
                 if(duelList.containsKey(p2)){

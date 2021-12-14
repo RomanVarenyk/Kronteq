@@ -31,6 +31,8 @@ Kronteq plugin;
                     plugin.sumo2.clear();
                     plugin.freeArenas.add("Sumo2");
                     plugin.playerTeleportToReady();
+                    plugin.isInCurrentMatch.remove(event.getEntity());
+                    plugin.isInCurrentMatch.remove(event.getEntity().getPlayer());
                 }
                 break;
             case "Sumo3":
@@ -43,6 +45,8 @@ Kronteq plugin;
                     plugin.sumo3.clear();
                     plugin.freeArenas.add("Sumo3");
                     plugin.playerTeleportToReady();
+                    plugin.isInCurrentMatch.remove(event.getEntity());
+                    plugin.isInCurrentMatch.remove(event.getEntity().getPlayer());
                 }
                 break;
             case "Sumo1":
@@ -55,6 +59,8 @@ Kronteq plugin;
                     plugin.sumo1.clear();
                     plugin.freeArenas.add("Sumo1");
                     plugin.playerTeleportToReady();
+                    plugin.isInCurrentMatch.remove(event.getEntity());
+                    plugin.isInCurrentMatch.remove(event.getEntity().getPlayer());
                 }
                 break;
             case "duels":
@@ -65,6 +71,8 @@ Kronteq plugin;
                 Location hub = getServer().getWorld("Practice").getSpawnLocation();
                 event.getEntity().teleport(hub);
                 event.getEntity().getPlayer().teleport(hub);
+                plugin.isInCurrentMatch.remove(event.getEntity());
+                plugin.isInCurrentMatch.remove(event.getEntity().getPlayer());
         }
-            }
-        }
+    }
+}

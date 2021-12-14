@@ -20,13 +20,15 @@ Kronteq plugin;
         if(sender instanceof Player){
             Player player = (Player) sender;
             if(!plugin.que.contains(player)){
-                plugin.que.add(player);
-                player.sendMessage(ChatColor.GREEN + "You have been added to the que. do /getQue to see the que");
-                System.out.println(plugin.freeArenas);
-                if(!plugin.freeArenas.isEmpty()){
-                    System.out.println(plugin.que);
-                    if(plugin.que.size() >= 1)
-                    plugin.playerTeleportToReady();
+                if(!plugin.isInCurrentMatch.contains(player)){
+                    plugin.que.add(player);
+                    player.sendMessage(ChatColor.GREEN + "You have been added to the que. do /getQue to see the que");
+                    System.out.println(plugin.freeArenas);
+                    if(!plugin.freeArenas.isEmpty()){
+                        System.out.println(plugin.que);
+                        if(plugin.que.size() >= 1)
+                            plugin.playerTeleportToReady();
+                    }
                 }
             }else{
                 player.sendMessage(ChatColor.RED +"You are already in the que. do /getQue to see the que.");
