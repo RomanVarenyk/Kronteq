@@ -8,6 +8,7 @@ import com.github.ukraine1449.kronteq.Events.MenuHandler;
 import com.github.ukraine1449.kronteq.Events.playerJoinEvent;
 import com.github.ukraine1449.kronteq.Events.playerKillEvent;
 import com.github.ukraine1449.kronteq.Events.playerLeaveEvent;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.World;
@@ -23,12 +24,16 @@ import java.util.ArrayList;
 public final class Kronteq extends JavaPlugin {
 public ArrayList<Player> que = new ArrayList<Player>();
 public ArrayList<Player> sumo2 = new ArrayList<Player>();
+public ArrayList<Player> sumo1 = new ArrayList<Player>();
+public ArrayList<Player> sumo3 = new ArrayList<Player>();
 public ArrayList<String> freeArenas = new ArrayList<String>();
 
 //8, 100, 162
     @Override
     public void onEnable() {
         freeArenas.add("Sumo2");
+        freeArenas.add("Sumo1");
+        freeArenas.add("Sumo3");
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         try {
@@ -46,7 +51,6 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
         getCommand("getQue").setExecutor(new getQue(this));
         getCommand("leavequeue").setExecutor(new leaveQueue(this));
     }
-//TODO: remove the sumo2 clear on death and instead do it in the method, teleport both players to the HUB.
     public Connection getConnection() throws Exception{
         String ip = getConfig().getString("ip");
         String password = getConfig().getString("password");
@@ -120,8 +124,9 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
     }
     public void playerTeleportToReady(){
         if(que.size() >= 2){
-            if(!freeArenas.isEmpty()){//TODO replace null with defaultstoredlocation if null generates error.
+            if(!freeArenas.isEmpty()){
                 Location baseloc = que.get(0).getLocation();
+                Bukkit.broadcastMessage(String.valueOf(baseloc));
                 Location p1l = baseloc;
                 Location p2l = baseloc;
                 String arenaName = freeArenas.get(0);
@@ -135,11 +140,39 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
                     que.remove(0);
                     p1l.setX(2);
                     p1l.setY(54);
-                    p1l.setZ(3);
+                    p1l.setZ(-1);
                     p1l.setWorld(world);
                     p2l.setX(2);
                     p2l.setY(54);
-                    p2l.setZ(-6);
+                    p2l.setZ(-1);
+                    p2l.setWorld(world);
+                }else if(arenaName.equals("Sumo3")){
+                    World world = getServer().getWorld("Sumo3");
+                    sumo3.add(player1);
+                    sumo3.add(player2);
+                    que.remove(1);
+                    que.remove(0);
+                    p1l.setX(2);
+                    p1l.setY(54);
+                    p1l.setZ(-1);
+                    p1l.setWorld(world);
+                    p2l.setX(2);
+                    p2l.setY(54);
+                    p2l.setZ(-1);
+                    p2l.setWorld(world);
+                }else{
+                    World world = getServer().getWorld("Sumo1");
+                    sumo1.add(player1);
+                    sumo1.add(player2);
+                    que.remove(1);
+                    que.remove(0);
+                    p1l.setX(2);
+                    p1l.setY(54);
+                    p1l.setZ(-1);
+                    p1l.setWorld(world);
+                    p2l.setX(2);
+                    p2l.setY(54);
+                    p2l.setZ(-1);
                     p2l.setWorld(world);
                 }
                 player1.teleport(p1l);
