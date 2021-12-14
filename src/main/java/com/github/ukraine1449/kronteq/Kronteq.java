@@ -1,9 +1,6 @@
 package com.github.ukraine1449.kronteq;
 
-import com.github.ukraine1449.kronteq.Commands.checkPlayerStats;
-import com.github.ukraine1449.kronteq.Commands.getQue;
-import com.github.ukraine1449.kronteq.Commands.joinQue;
-import com.github.ukraine1449.kronteq.Commands.leaveQueue;
+import com.github.ukraine1449.kronteq.Commands.*;
 import com.github.ukraine1449.kronteq.Events.MenuHandler;
 import com.github.ukraine1449.kronteq.Events.playerJoinEvent;
 import com.github.ukraine1449.kronteq.Events.playerKillEvent;
@@ -20,6 +17,7 @@ import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public final class Kronteq extends JavaPlugin {
 public ArrayList<Player> que = new ArrayList<Player>();
@@ -27,7 +25,8 @@ public ArrayList<Player> sumo2 = new ArrayList<Player>();
 public ArrayList<Player> sumo1 = new ArrayList<Player>();
 public ArrayList<Player> sumo3 = new ArrayList<Player>();
 public ArrayList<String> freeArenas = new ArrayList<String>();
-
+public boolean isDuelFree = true;
+public HashMap<Player, Player> duelList = new HashMap<Player, Player>();
 //8, 100, 162
     @Override
     public void onEnable() {
@@ -45,6 +44,7 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
         getServer().getPluginManager().registerEvents(new MenuHandler(), this);
         getServer().getPluginManager().registerEvents(new playerJoinEvent(this), this);
         getServer().getPluginManager().registerEvents(new playerLeaveEvent(this), this);
+        getCommand("duel").setExecutor(new Duel(this));
         getServer().getPluginManager().registerEvents(new playerKillEvent(this), this);
         getCommand("stats").setExecutor(new checkPlayerStats(this));
         getCommand("joinque").setExecutor(new joinQue(this));
@@ -186,5 +186,20 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
         Location hub = getServer().getWorld("Practice").getSpawnLocation();
         p1.teleport(hub);
         p2.teleport(hub);
+    }
+    public void playerDuelStart(Player p1, Player p2, String args){
+        if(isDuelFree){
+            if(args.equals("a")){
+
+            }else if(args.equals("d")){
+
+            }else{
+                duelList.putIfAbsent(p1, p2);
+                p2.sendMessage(p1.getDisplayName() + " " + ChatColor.BLUE + "has invited you to duel. to accept do /duel " + p1.getDisplayName() + " a");
+                p2.sendMessage(ChatColor.BLUE + "To deny the request to duel do /duel " + p1.getDisplayName() + " d");
+            }
+        }else{
+            p1.sendMessage(ChatColor.RED + "The duel arena isnt free. Please try again later.");
+        }
     }
 }
