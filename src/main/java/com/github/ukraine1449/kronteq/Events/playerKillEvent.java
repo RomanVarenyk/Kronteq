@@ -24,21 +24,21 @@ Kronteq plugin;
             case "Sumo2":
                 if (plugin.sumo2.contains(event.getEntity().getPlayer())) {
                     plugin.sumo2.remove(event.getEntity().getPlayer());
-                    plugin.postOnKill(plugin.sumo2.get(0).toString(), event.getEntity().getPlayer().toString());
+                    plugin.postOnKill(plugin.sumo2.get(0).getUniqueId().toString(), event.getEntity().getPlayer().getUniqueId().toString());
                     Bukkit.broadcastMessage(ChatColor.RED + "Follwoing is a statement about players in list. THIS IS FOR DEBUGING. ");
                     Bukkit.broadcastMessage(event.getEntity().getPlayer() + " SEP " + plugin.sumo2.get(0));
                     plugin.teleportBackToHub(event.getEntity().getPlayer(), plugin.sumo2.get(0));
                     plugin.sumo2.clear();
                     plugin.freeArenas.add("Sumo2");
-                    plugin.playerTeleportToReady();
                     plugin.isInCurrentMatch.remove(event.getEntity());
                     plugin.isInCurrentMatch.remove(event.getEntity().getPlayer());
+                    plugin.playerTeleportToReady();
                 }
                 break;
             case "Sumo3":
                 if (plugin.sumo3.contains(event.getEntity().getPlayer())) {
                     plugin.sumo3.remove(event.getEntity().getPlayer());
-                    plugin.postOnKill(plugin.sumo3.get(0).toString(), event.getEntity().getPlayer().toString());
+                    plugin.postOnKill(plugin.sumo2.get(0).getUniqueId().toString(), event.getEntity().getPlayer().getUniqueId().toString());
                     Bukkit.broadcastMessage(ChatColor.RED + "Follwoing is a statement about players in list. THIS IS FOR DEBUGING. ");
                     Bukkit.broadcastMessage(event.getEntity().getPlayer() + " SEP " + plugin.sumo3.get(0));
                     plugin.teleportBackToHub(event.getEntity().getPlayer(), plugin.sumo3.get(0));
@@ -52,7 +52,7 @@ Kronteq plugin;
             case "Sumo1":
                 if (plugin.sumo1.contains(event.getEntity().getPlayer())) {
                     plugin.sumo1.remove(event.getEntity().getPlayer());
-                    plugin.postOnKill(plugin.sumo1.get(0).toString(), event.getEntity().getPlayer().toString());
+                    plugin.postOnKill(plugin.sumo2.get(0).getUniqueId().toString(), event.getEntity().getPlayer().getUniqueId().toString());
                     Bukkit.broadcastMessage(ChatColor.RED + "Follwoing is a statement about players in list. THIS IS FOR DEBUGING. ");
                     Bukkit.broadcastMessage(event.getEntity().getPlayer() + " SEP " + plugin.sumo1.get(0));
                     plugin.teleportBackToHub(event.getEntity().getPlayer(), plugin.sumo1.get(0));

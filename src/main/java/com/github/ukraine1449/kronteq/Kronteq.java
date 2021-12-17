@@ -133,6 +133,7 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
                 String arenaName = freeArenas.get(0);
                 Player player1 = que.get(0);
                 Player player2 = que.get(1);
+                if(!isInCurrentMatch.contains(player1) && !isInCurrentMatch.contains(player2)){
                 isInCurrentMatch.add(player1);
                 isInCurrentMatch.add(player2);
                 if(arenaName.equals("Sumo2")){
@@ -177,7 +178,7 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
                     p2l.setY(54);
                     p2l.setZ(-1);
                     p2l.setWorld(world);
-                }
+                }}
                 player1.teleport(p1l);
                 player2.teleport(p2l);
                 player1.sendMessage(ChatColor.RED + "Your match has started with " + player2.getDisplayName());
