@@ -17,7 +17,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
-
+//TODO add permissions for commands and add the to documentation.
 public final class Kronteq extends JavaPlugin {
 public ArrayList<Player> que = new ArrayList<Player>();
 public ArrayList<Player> sumo2 = new ArrayList<Player>();
