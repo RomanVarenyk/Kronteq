@@ -11,7 +11,6 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
-
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -49,8 +48,8 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
         getCommand("duel").setExecutor(new Duel(this));
         getServer().getPluginManager().registerEvents(new playerKillEvent(this), this);
         getCommand("stats").setExecutor(new checkPlayerStats(this));
-        getCommand("joinque").setExecutor(new joinQue(this));
-        getCommand("getQue").setExecutor(new getQue(this));
+        getCommand("joinqueue").setExecutor(new joinQue(this));
+        getCommand("getQueue").setExecutor(new getQue(this));
         getCommand("leavequeue").setExecutor(new leaveQueue(this));
     }
     public Connection getConnection() throws Exception{
@@ -216,7 +215,7 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
                         p2.sendMessage(ChatColor.RED + "Your duel request has been denied.");
                         duelList.remove(p2);
                     }}
-            }else{
+            }else if (args.equals("s")){
                 duelList.putIfAbsent(p1, p2);
                 p2.sendMessage(p1.getDisplayName() + " " + ChatColor.BLUE + "has invited you to duel. to accept do /duel " + p1.getDisplayName() + " a");
                 p2.sendMessage(ChatColor.BLUE + "To deny the request to duel do /duel " + p1.getDisplayName() + " d");

@@ -6,9 +6,11 @@ website: plugins.world
 commands:
   stats:
     description: a command to get stats for a player
-  joinque:
+  joinqueue:
     description: a command to join the sumo que
-  getQue:
+  getQueue:
     description: a command to get to see the que.
   leavequeue:
     description: a command to leave the sumo queue
+  duel:
+    description: a command to request to duel someone. 

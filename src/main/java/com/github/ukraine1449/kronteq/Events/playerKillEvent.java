@@ -67,10 +67,8 @@ Kronteq plugin;
                 plugin.cDuel.remove(event.getEntity().getPlayer());
                 plugin.isDuelFree = true;
                 plugin.postOnKill(plugin.cDuel.get(0).getUniqueId().toString(), event.getEntity().getPlayer().getUniqueId().toString());
+                plugin.teleportBackToHub(event.getEntity().getPlayer(),plugin.cDuel.get(0));
                 plugin.cDuel.clear();
-                Location hub = getServer().getWorld("Practice").getSpawnLocation();
-                event.getEntity().teleport(hub);
-                event.getEntity().getPlayer().teleport(hub);
                 plugin.isInCurrentMatch.remove(event.getEntity());
                 plugin.isInCurrentMatch.remove(event.getEntity().getPlayer());
         }
