@@ -5,14 +5,26 @@ authors: [ Ukraine1449 ]
 website: plugins.world
 commands:
   stats:
-    description: a command to get stats for a player
+    description: used with just /stats or /stats (playername) to check either your own stats or another players stats
+    permission-message: You do not have the permission to execute this command. Be an OP, or have permission; SUMO.stats
+    permission: SUMO.stats
   joinqueue:
-    description: a command to join the sumo que
+    description: A command to join the queue to fight someone random in the sumo arena
+    permission-message: You do not have the permission to execute this command. Be an OP, or have permission; SUMO.joinQueue
+    permission: SUMO.joinQueue
   getQueue:
-    description: a command to get to see the que.
+    description: A command used to check how many players are in the queue
+    permission-message: You do not have the permission to execute this command. Be an OP, or have permission; SUMO.getQueue
+    permission: SUMO.getQueue
   leavequeue:
-    description: a command to leave the sumo queue
+    description: A command to leave the queue to fight someone in the sumo arena. if you decide to rejoin the queue, you will be put in the back instead of the place where you left so be warned.
+    permission-message: You do not have the permission to execute this command. Be an OP, or have permission; SUMO.leavequeue
+    permission: SUMO.leavequeue
   duel:
-    description: a command to request to duel someone.
+    description: A command to duel someone else. To send a duel request do /duel (other players name) S, to accept do /duel (other players name) A, and to deny do /duel (other players name) D
+    permission-message: You do not have the permission to execute this command. Be an OP, or have permission; SUMO.duel
+    permission: SUMO.duel
   debug:
-    description: outputs all major variables to either console or the player
+    description: A mysteryous command. No but seriously this just outputs all variables that are major in the main class
+    permission-message: You do not have the permission to execute this command. Be an OP, or have permission; SUMO.debug
+    permission: SUMO.debug
