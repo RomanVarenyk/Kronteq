@@ -6,7 +6,7 @@
 
     <groupId>com.github.ukraine1449</groupId>
     <artifactId>Kronteq</artifactId>
-    <version>0.0.5</version>
+    <version>0.9.0</version>
     <packaging>jar</packaging>
 
     <name>Kronteq</name>
