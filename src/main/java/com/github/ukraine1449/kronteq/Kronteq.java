@@ -19,7 +19,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.HashMap;
-//TODO add permissions for commands and add the to documentation. Add documentation on code to github and to code.
+//TODO Add documentation on code to github
 public final class Kronteq extends JavaPlugin {
 public ArrayList<Player> que = new ArrayList<Player>();
 public ArrayList<Player> sumo2 = new ArrayList<Player>();
@@ -270,4 +270,4 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
             queueSize.setScore(que.size());
         }
     }
-}//TODO add perms and a debug command to output all public major vals
+}
