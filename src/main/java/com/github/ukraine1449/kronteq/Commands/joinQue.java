@@ -23,12 +23,15 @@ Kronteq plugin;
                 if(!plugin.isInCurrentMatch.contains(player)){
                     plugin.que.add(player);
                     player.sendMessage(ChatColor.GREEN + "You have been added to the que. do /getQue to see the que");
+                    plugin.updateQueueListBoard();
                     System.out.println(plugin.freeArenas);
                     if(!plugin.freeArenas.isEmpty()){
                         System.out.println(plugin.que);
                         if(plugin.que.size() >= 1)
                             plugin.playerTeleportToReady();
                     }
+                }else{
+                    player.sendMessage(ChatColor.RED + "You are currently in a match and are not able to join the queue");
                 }
             }else{
                 player.sendMessage(ChatColor.RED +"You are already in the que. do /getQue to see the que.");

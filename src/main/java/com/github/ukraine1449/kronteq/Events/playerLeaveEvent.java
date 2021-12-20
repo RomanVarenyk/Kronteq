@@ -16,6 +16,7 @@ Kronteq plugin;
 
     @EventHandler
     public void playerLeaveEvent(PlayerQuitEvent event){
+        plugin.updateQueueListBoard();
         Player player = event.getPlayer();
         if(plugin.que.contains(player)){
             plugin.que.remove(player);

@@ -18,7 +18,8 @@ Kronteq plugin;
 
         Player player = event.getPlayer();
         plugin.playerJoinQuery(player.getUniqueId().toString());
-
+        plugin.createQueueListBoard(player);
+        plugin.updateQueueListBoard();
     }
 
 }

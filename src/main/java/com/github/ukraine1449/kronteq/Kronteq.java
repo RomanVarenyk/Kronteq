@@ -11,6 +11,8 @@ import org.bukkit.Location;
 import org.bukkit.World;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scoreboard.*;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -34,6 +36,7 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
         freeArenas.add("Sumo2");
         freeArenas.add("Sumo1");
         freeArenas.add("Sumo3");
+        //Adds sumo arenas by default.
         getConfig().options().copyDefaults();
         saveDefaultConfig();
         try {
@@ -41,7 +44,7 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
         } catch (Exception e) {
             e.printStackTrace();
             consoleError("SQL user stats table creation");
-        }
+        }//Creates table in the SQL DB if not already existing
         getServer().getPluginManager().registerEvents(new MenuHandler(), this);
         getServer().getPluginManager().registerEvents(new playerJoinEvent(this), this);
         getServer().getPluginManager().registerEvents(new playerLeaveEvent(this), this);
@@ -51,6 +54,7 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
         getCommand("joinqueue").setExecutor(new joinQue(this));
         getCommand("getQueue").setExecutor(new getQue(this));
         getCommand("leavequeue").setExecutor(new leaveQueue(this));
+        //registering all events and commands
     }
     public Connection getConnection() throws Exception{
         String ip = getConfig().getString("ip");
@@ -223,6 +227,27 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
             }
         }else{
             p1.sendMessage(ChatColor.RED + "The duel arena isnt free. Please try again later.");
+        }
+    }
+    public void createQueueListBoard(Player player){
+        ScoreboardManager scoreboardManager = Bukkit.getScoreboardManager();
+        Scoreboard scoreBoard = scoreboardManager.getNewScoreboard();
+        Objective objective = scoreBoard.registerNewObjective("Queue", "dummy");
+        objective.setDisplayName("Play.PeakPVP.com");
+        objective.setDisplaySlot(DisplaySlot.SIDEBAR);
+        Score onlinePlayers = objective.getScore("Online: ");
+        onlinePlayers.setScore(Bukkit.getOnlinePlayers().size());
+        Score currentInQue = objective.getScore("Queue: ");
+        currentInQue.setScore(que.size());
+        Score playerName = objective.getScore("Player: " + player.getDisplayName());
+        player.setScoreboard(scoreBoard);
+    }
+    public void updateQueueListBoard(){
+        for(Player online : Bukkit.getOnlinePlayers()){
+            Score onlinePlayers = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore("Online: ");
+            onlinePlayers.setScore(Bukkit.getOnlinePlayers().size());
+            Score queueSize = online.getScoreboard().getObjective(DisplaySlot.SIDEBAR).getScore("Queue: ");
+            queueSize.setScore(que.size());
         }
     }
 }

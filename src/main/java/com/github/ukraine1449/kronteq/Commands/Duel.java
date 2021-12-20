@@ -2,6 +2,7 @@ package com.github.ukraine1449.kronteq.Commands;
 
 import com.github.ukraine1449.kronteq.Kronteq;
 import org.bukkit.Bukkit;
+import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -24,6 +25,8 @@ Kronteq plugin;
                     Player target = Bukkit.getPlayerExact(args[0]);
                     if(!plugin.isInCurrentMatch.contains(target)){
                         plugin.playerDuelStart(player, target, args[1]);
+                    }else{
+                        player.sendMessage(ChatColor.RED + "You are currently in a match and cannot duel someone.");
                     }
                 }catch (Exception e){
                     plugin.playerError(player, "Player name");
