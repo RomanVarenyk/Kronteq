@@ -13,4 +13,6 @@ commands:
   leavequeue:
     description: a command to leave the sumo queue
   duel:
-    description: a command to request to duel someone. 
+    description: a command to request to duel someone.
+  debug:
+    description: outputs all major variables to either console or the player
