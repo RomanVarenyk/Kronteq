@@ -29,7 +29,6 @@ public ArrayList<String> freeArenas = new ArrayList<String>();
 public boolean isDuelFree = true;
 public HashMap<Player, Player> duelList = new HashMap<Player, Player>();
 public ArrayList<Player> cDuel = new ArrayList<Player>();
-public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
 //8, 100, 162
     @Override
     public void onEnable() {
@@ -140,17 +139,14 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
             if(!freeArenas.isEmpty()){
                 //gets a base location named baseloc and sets it as the p1l and p2l locations
                 Location baseloc = que.get(0).getLocation();
-                Bukkit.broadcastMessage(String.valueOf(baseloc));
                 Location p1l = baseloc;
                 Location p2l = baseloc;
                 //gets free arena name, gets the 2 players
                 String arenaName = freeArenas.get(0);
                 Player player1 = que.get(0);
                 Player player2 = que.get(1);
-                if(!isInCurrentMatch.contains(player1) && !isInCurrentMatch.contains(player2)){
+
                     //if neither player is in a match add them to the current match list
-                isInCurrentMatch.add(player1);
-                isInCurrentMatch.add(player2);
                 if(arenaName.equals("Sumo2")){
                     //set world of location name to the appropriate name after which arena has been selected. add them to the list of said arena, remove from que and set the p1l and p2l new coords.
                     World world = getServer().getWorld("Sumo2");
@@ -166,6 +162,7 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
                     p2l.setY(54);
                     p2l.setZ(-1);
                     p2l.setWorld(world);
+                    freeArenas.remove(0);
                 }else if(arenaName.equals("Sumo3")){
                     World world = getServer().getWorld("Sumo3");
                     sumo3.add(player1);
@@ -180,6 +177,7 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
                     p2l.setY(54);
                     p2l.setZ(-1);
                     p2l.setWorld(world);
+                    freeArenas.remove(0);
                 }else{
                     World world = getServer().getWorld("Sumo1");
                     sumo1.add(player1);
@@ -194,7 +192,8 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
                     p2l.setY(54);
                     p2l.setZ(-1);
                     p2l.setWorld(world);
-                }}
+                    freeArenas.remove(0);
+                }
                 //telepirt the players to said locations and send them both a message saying the battle has started.
                 player1.teleport(p1l);
                 player2.teleport(p2l);
@@ -227,8 +226,6 @@ public ArrayList<Player> isInCurrentMatch = new ArrayList<Player>();
                     p1.teleport(defloc);
                     p2.teleport(defloc);
                     duelList.remove(p2);
-                    isInCurrentMatch.add(p1);
-                    isInCurrentMatch.add(p2);
                 }}
             }else if(args.equals("d")){
                 if(duelList.containsKey(p2)){

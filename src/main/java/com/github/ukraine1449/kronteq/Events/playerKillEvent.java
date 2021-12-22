@@ -25,13 +25,9 @@ Kronteq plugin;
                 if (plugin.sumo2.contains(event.getEntity().getPlayer())) {
                     plugin.sumo2.remove(event.getEntity().getPlayer());
                     plugin.postOnKill(plugin.sumo2.get(0).getUniqueId().toString(), event.getEntity().getPlayer().getUniqueId().toString());
-                    Bukkit.broadcastMessage(ChatColor.RED + "Follwoing is a statement about players in list. THIS IS FOR DEBUGING. ");
-                    Bukkit.broadcastMessage(event.getEntity().getPlayer() + " SEP " + plugin.sumo2.get(0));
                     plugin.teleportBackToHub(event.getEntity().getPlayer(), plugin.sumo2.get(0));
                     plugin.sumo2.clear();
                     plugin.freeArenas.add("Sumo2");
-                    plugin.isInCurrentMatch.remove(event.getEntity());
-                    plugin.isInCurrentMatch.remove(event.getEntity().getPlayer());
                     plugin.playerTeleportToReady();
                 }
                 break;
@@ -39,28 +35,20 @@ Kronteq plugin;
                 if (plugin.sumo3.contains(event.getEntity().getPlayer())) {
                     plugin.sumo3.remove(event.getEntity().getPlayer());
                     plugin.postOnKill(plugin.sumo2.get(0).getUniqueId().toString(), event.getEntity().getPlayer().getUniqueId().toString());
-                    Bukkit.broadcastMessage(ChatColor.RED + "Follwoing is a statement about players in list. THIS IS FOR DEBUGING. ");
-                    Bukkit.broadcastMessage(event.getEntity().getPlayer() + " SEP " + plugin.sumo3.get(0));
                     plugin.teleportBackToHub(event.getEntity().getPlayer(), plugin.sumo3.get(0));
                     plugin.sumo3.clear();
                     plugin.freeArenas.add("Sumo3");
                     plugin.playerTeleportToReady();
-                    plugin.isInCurrentMatch.remove(event.getEntity());
-                    plugin.isInCurrentMatch.remove(event.getEntity().getPlayer());
                 }
                 break;
             case "Sumo1":
                 if (plugin.sumo1.contains(event.getEntity().getPlayer())) {
                     plugin.sumo1.remove(event.getEntity().getPlayer());
                     plugin.postOnKill(plugin.sumo2.get(0).getUniqueId().toString(), event.getEntity().getPlayer().getUniqueId().toString());
-                    Bukkit.broadcastMessage(ChatColor.RED + "Follwoing is a statement about players in list. THIS IS FOR DEBUGING. ");
-                    Bukkit.broadcastMessage(event.getEntity().getPlayer() + " SEP " + plugin.sumo1.get(0));
                     plugin.teleportBackToHub(event.getEntity().getPlayer(), plugin.sumo1.get(0));
                     plugin.sumo1.clear();
                     plugin.freeArenas.add("Sumo1");
                     plugin.playerTeleportToReady();
-                    plugin.isInCurrentMatch.remove(event.getEntity());
-                    plugin.isInCurrentMatch.remove(event.getEntity().getPlayer());
                 }
                 break;
             case "duels":
@@ -69,8 +57,6 @@ Kronteq plugin;
                 plugin.postOnKill(plugin.cDuel.get(0).getUniqueId().toString(), event.getEntity().getPlayer().getUniqueId().toString());
                 plugin.teleportBackToHub(event.getEntity().getPlayer(),plugin.cDuel.get(0));
                 plugin.cDuel.clear();
-                plugin.isInCurrentMatch.remove(event.getEntity());
-                plugin.isInCurrentMatch.remove(event.getEntity().getPlayer());
         }
     }
 }

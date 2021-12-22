@@ -20,17 +20,11 @@ Kronteq plugin;
 
         if(sender instanceof Player){
             Player player = (Player) sender;
-            if(!plugin.isInCurrentMatch.contains(player)){
                 try{
                     Player target = Bukkit.getPlayerExact(args[0]);
-                    if(!plugin.isInCurrentMatch.contains(target)){
                         plugin.playerDuelStart(player, target, args[1]);
-                    }else{
-                        player.sendMessage(ChatColor.RED + "You are currently in a match and cannot duel someone.");
-                    }
                 }catch (Exception e){
                     plugin.playerError(player, "Player name");
-                }
             }
         }
 

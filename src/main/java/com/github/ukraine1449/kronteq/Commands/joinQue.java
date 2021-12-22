@@ -20,7 +20,6 @@ Kronteq plugin;
         if(sender instanceof Player){
             Player player = (Player) sender;
             if(!plugin.que.contains(player)){
-                if(!plugin.isInCurrentMatch.contains(player)){
                     plugin.que.add(player);
                     player.sendMessage(ChatColor.GREEN + "You have been added to the que. do /getQue to see the que");
                     plugin.updateQueueListBoard();
@@ -30,9 +29,7 @@ Kronteq plugin;
                         if(plugin.que.size() >= 1)
                             plugin.playerTeleportToReady();
                     }
-                }else{
-                    player.sendMessage(ChatColor.RED + "You are currently in a match and are not able to join the queue");
-                }
+
             }else{
                 player.sendMessage(ChatColor.RED +"You are already in the que. do /getQue to see the que.");
             }

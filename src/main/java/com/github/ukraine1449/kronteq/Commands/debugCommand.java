@@ -26,7 +26,6 @@ Kronteq plugin;
             player.sendMessage("isDuelFree: " + plugin.isDuelFree);
             player.sendMessage("duelList: " + plugin.duelList);
             player.sendMessage("cDuel: " + plugin.cDuel);
-            player.sendMessage("isInCurrentMatch: " + plugin.isInCurrentMatch);
         }else{
             System.out.println("Que: " + plugin.que);
             System.out.println("Sumo1: " + plugin.sumo1);
@@ -36,7 +35,6 @@ Kronteq plugin;
             System.out.println("isDuelFree: " + plugin.isDuelFree);
             System.out.println("duelList: " + plugin.duelList);
             System.out.println("cDuel: " + plugin.cDuel);
-            System.out.println("isInCurrentMatch: " + plugin.isInCurrentMatch);
         }
         return true;
     }
